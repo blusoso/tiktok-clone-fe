@@ -18,13 +18,11 @@ const VideoPlayer = styled.video`
 `;
 
 export type VideoProps = {
-  key: string;
   url: string;
 } & VideoFooterProps &
   VideoSidebarProps;
 
 const Video = ({
-  key,
   url,
   channel,
   description,
@@ -51,7 +49,7 @@ const Video = ({
   };
 
   return (
-    <VideoStyled key={key}>
+    <VideoStyled>
       <VideoPlayer ref={videoRef} src={url} onClick={handleVideoPress} loop />
 
       <VideoFooter channel={channel} description={description} song={song} />

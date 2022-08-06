@@ -68,17 +68,18 @@ const Home: NextPage = () => {
               },
               index
             ) => (
-              <Video
-                key={`${url}-${index}`}
-                url={url}
-                channel={channel}
-                description={description}
-                song={song}
-                likes={likes}
-                comments={comments}
-                bookmarks={bookmarks}
-                shares={shares}
-              />
+              <div key={`${url}-${index}`}>
+                <Video
+                  url={url}
+                  channel={channel}
+                  description={description}
+                  song={song}
+                  likes={likes}
+                  comments={comments}
+                  bookmarks={bookmarks}
+                  shares={shares}
+                />
+              </div>
             )
           )}
         </VideosContainer>
