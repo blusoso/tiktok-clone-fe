@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -6,19 +7,27 @@ import CommentPanel from "../Comment/CommentPanel";
 import VideoFooter, { VideoFooterProps } from "./VideoFooter";
 import VideoSidebar, { VideoSidebarProps } from "./VideoSidebar";
 
-const VideoStyled = styled.div`
-  position: relative;
-  background-color: white;
-  width: 100%;
-  height: 100%;
-  scroll-snap-align: start;
-`;
-
 const VideoPlayer = styled.video`
   object-fit: fill;
   width: 100%;
   height: 100%;
 `;
+
+const CommentPanelContainer = styled(motion.div)`
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 0.7em 1em;
+`;
+
+const commentPanelVariants = {
+  open: { y: 0 },
+  closed: { y: "100%" },
+};
 
 export type VideoProps = {
   url: string;
@@ -61,7 +70,18 @@ const Video = ({
         bookmarks={bookmarks}
         shares={shares}
       />
-      {isOpen && <CommentPanel />}
+
+      {/* TODO: close when click out of panel */}
+      <CommentPanelContainer
+        animate={isOpen ? "open" : "closed"}
+        variants={commentPanelVariants}
+        transition={{
+          duration: 0.2,
+          ease: "easeOut",
+        }}
+      >
+        {isOpen && <CommentPanel />}
+      </CommentPanelContainer>
     </>
   );
 };

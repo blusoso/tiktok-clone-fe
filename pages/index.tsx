@@ -26,7 +26,7 @@ const App = styled(HideScrollbar)`
 const VideosContainer = styled(HideScrollbar)`
   position: relative;
   height: 90vh;
-  width: 380px;
+  width: 360px;
   border-radius: 20px;
   scroll-snap-type: y mandatory;
 `;
