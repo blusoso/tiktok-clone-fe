@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
-
+import { RecoilRoot } from "recoil";
 const theme = {
   fg: "palevioletred",
   bg: "white",
@@ -10,7 +10,9 @@ const theme = {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </ThemeProvider>
   );
 }

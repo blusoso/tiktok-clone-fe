@@ -25,10 +25,18 @@ const App = styled(HideScrollbar)`
 
 const VideosContainer = styled(HideScrollbar)`
   position: relative;
-  height: 800px;
-  width: 450px;
+  height: 90vh;
+  width: 380px;
   border-radius: 20px;
   scroll-snap-type: y mandatory;
+`;
+
+const VideoStyled = styled.div`
+  position: relative;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
 `;
 
 const Home: NextPage = () => {
@@ -68,7 +76,7 @@ const Home: NextPage = () => {
               },
               index
             ) => (
-              <div key={`${url}-${index}`}>
+              <VideoStyled key={`${url}-${index}`}>
                 <Video
                   url={url}
                   channel={channel}
@@ -79,7 +87,7 @@ const Home: NextPage = () => {
                   bookmarks={bookmarks}
                   shares={shares}
                 />
-              </div>
+              </VideoStyled>
             )
           )}
         </VideosContainer>

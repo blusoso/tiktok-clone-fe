@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import commentState from "../../recoils/modules/comment";
+import CommentPanel from "../Comment/CommentPanel";
 import VideoFooter, { VideoFooterProps } from "./VideoFooter";
 import VideoSidebar, { VideoSidebarProps } from "./VideoSidebar";
 
@@ -32,26 +35,25 @@ const Video = ({
   bookmarks,
   shares,
 }: VideoProps) => {
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isOpen } = useRecoilValue(commentState);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   //TODO: play at first time
 
   const handleVideoPress = () => {
-    // if (videoRef.current) {
-    //   if (isPlaying) {
-    //     videoRef.current.pause();
-    //     setIsPlaying(false);
-    //   } else {
-    //     videoRef.current.play();
-    //     setIsPlaying(true);
-    //   }
-    // }
+    const videoCurrent = videoRef.current;
+    if (isPlaying) {
+      videoCurrent?.pause();
+      setIsPlaying(false);
+    } else {
+      videoCurrent?.play();
+      setIsPlaying(true);
+    }
   };
 
   return (
-    <VideoStyled>
+    <>
       <VideoPlayer ref={videoRef} src={url} onClick={handleVideoPress} loop />
-
       <VideoFooter channel={channel} description={description} song={song} />
       <VideoSidebar
         likes={likes}
@@ -59,7 +61,8 @@ const Video = ({
         bookmarks={bookmarks}
         shares={shares}
       />
-    </VideoStyled>
+      {isOpen && <CommentPanel />}
+    </>
   );
 };
 

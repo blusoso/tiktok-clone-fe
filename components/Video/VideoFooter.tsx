@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const VideoFooterStyled = styled.div`
   position: relative;
   color: white;
-  bottom: 9em;
+  bottom: 7.5em;
   margin-left 1.5em;
   display: flex;
 
@@ -19,15 +19,16 @@ const VideoFooterStyled = styled.div`
   }
 `;
 
+// TODO: Handle long text 2 lines
 const Text = styled.div`
   flex: 1;
+  width: 70%;
 
   h3 {
     margin: 0px;
   }
   p {
-    margin: 8px 0;
-    padding-bottom: 20px;
+    margin: 0.3em 0 0.9em;
   }
 `;
 
@@ -38,7 +39,7 @@ const TickerWrapper = styled.div`
   .marquee-container {
     margin-left: 10px;
     height: fit-content;
-    width: 60%;
+    width: 50%;
 
     // -webkit-mask-image: -webkit-gradient(
     //   linear,
@@ -80,12 +81,12 @@ const VideoFooter = ({ channel, description, song }: VideoFooterProps) => {
         </TickerWrapper>
       </Text>
 
-      <VideoFooterRecord
+      {/* <VideoFooterRecord
         src="https://static.thenounproject.com/png/934821-200.png"
         alt=""
         animate={{ rotate: 360 }}
         transition={{ ease: "linear", duration: 3, repeat: Infinity }}
-      />
+      /> */}
     </VideoFooterStyled>
   );
 };
